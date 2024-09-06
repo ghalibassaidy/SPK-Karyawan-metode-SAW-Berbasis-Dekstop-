@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Periode" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b22916b5-0b6b-41b7-91b9-654937320530">
+	<property name="ireport.zoom" value="1.331000000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="bulan" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tahun" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+    *
+FROM
+      tbl_periode
+WHERE bulan =$P{bulan} AND tahun =$P{tahun}]]>
+	</queryString>
+	<field name="Nama" class="java.lang.String"/>
+	<field name="Nilai" class="java.lang.Double"/>
+	<field name="rank" class="java.lang.Integer"/>
+	<field name="bulan" class="java.lang.String"/>
+	<field name="tahun" class="java.lang.String"/>
+	<variable name="R_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{Nama}]]></variableExpression>
+	</variable>
+	<variable name="Nama_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{Nama}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="22" width="150" height="20" uuid="2a90fcc9-a36b-4cc6-a946-aaacef9d93bd"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data/Nilai Akhir Periode : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="22" width="60" height="20" uuid="74f263b9-b655-4168-99be-e3c39ff9a24e"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bulan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="211" y="22" width="48" height="20" uuid="cc2942bf-b3d4-4a24-8f3e-9f3aa1b08040"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tahun}]]></textFieldExpression>
+			</textField>
+			<elementGroup>
+				<textField>
+					<reportElement x="200" y="0" width="125" height="20" uuid="f278be81-60de-4c44-aad7-17b81339bffe"/>
+					<textFieldExpression><![CDATA[PT. Khair Karya Utama]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="30" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="554" height="1" uuid="360a5b43-943f-438c-8ec8-584df21914d7"/>
+			</line>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="454" y="0" width="100" height="20" uuid="bcbc6b07-0a93-44de-b8a0-79a1f4ebdcc7"/>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="53" splitType="Stretch">
+			<staticText>
+				<reportElement x="211" y="31" width="154" height="19" uuid="93649fe5-15ec-400a-9929-50071f2b4025"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nilai]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-3" y="52" width="557" height="1" uuid="ab83d43a-5b7d-4ac4-a53c-aa5e19edf8da"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="31" width="211" height="20" uuid="9cc96b8c-66ee-4430-b98b-0ca9780eeb51"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="32" width="555" height="1" uuid="282653f1-4690-4c94-91dc-896a19e1c3c6"/>
+			</line>
+			<staticText>
+				<reportElement x="365" y="31" width="189" height="20" uuid="06041104-a28f-455c-9a6e-4a60ef630c1b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rangking]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="407c7888-3afb-4c69-9205-a779d458f254"/>
+				<text><![CDATA[Jumlah Karyawan :]]></text>
+			</staticText>
+			<textField evaluationTime="Column">
+				<reportElement x="100" y="0" width="100" height="20" uuid="de59e92f-1c95-4aac-9352-cc8841d49e33"/>
+				<textFieldExpression><![CDATA[$V{Nama_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<line>
+				<reportElement x="-2" y="19" width="557" height="1" forecolor="#0066CC" uuid="3e3ef325-2793-4dcc-bb3f-0b3850031445"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="-1" width="210" height="19" uuid="13a72ca5-f546-4e0a-a116-30e9462e0551"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="365" y="2" width="189" height="19" uuid="81b8b84e-21e9-49d5-9502-c681d48e7d73"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{rank}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="211" y="2" width="154" height="18" uuid="6d314d81-501c-400e-b84b-46c62c097c10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Nilai}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="435" y="25" width="80" height="20" uuid="d7c7a276-340e-4d7f-a386-46e33f292943"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="25" width="40" height="20" uuid="514969c1-0bc5-46eb-ac7a-7ae798bd2876"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
